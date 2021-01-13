@@ -1,5 +1,7 @@
-Quick en/decrypting Python script
+# En/Decrypting
 
-Source:
+Quick en/decrypting Python script.
 
-* https://cryptography.io/en/latest/fernet/
+# To run
+
+`conda activate endecrypter`
