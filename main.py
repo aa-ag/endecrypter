@@ -19,20 +19,9 @@ def write_key():
         kf.write(key)
 
 
-def decrypt(token):
-    '''
-     decrypts string using key
-    '''
-    global key, fernet
-
-    decrypted_message = fernet.decrypt(token)
-
-    print(decrypted_message.decode())
-
-
 def encrypt():
     '''
-     Encrypts message using Fernet class
+     Encrypts file using Fernet class
     '''
     # import/generate key
     # key = Fernet.generate_key()
@@ -41,13 +30,31 @@ def encrypt():
     # opens file, reads data inside, encrypts data and writes new, encrypted data
     with open('lorem.txt', 'rb') as unencrypted_file:
         file_data = unencrypted_file.read()
-        encrypted_data = fernet.encrypt(file_data)
+
+    encrypted_data = fernet.encrypt(file_data)
 
     with open('encrypted_lorem.txt', 'wb') as encrypted_file:
         encrypted_file.write(encrypted_data)
 
 
+def decrypt():
+    '''
+     Decrypts file using key
+    '''
+    global key, fernet
+
+    # opens, reads, decrypts encrypted file and writes new uncrypted file
+    with open('encrypted_lorem.txt', 'rb') as encrypted_file:
+        encrypted_data = encrypted_file.read()
+
+    decrypted_data = fernet.decrypt(encrypted_data)
+
+    with open('lorem.txt', 'wb') as decrypted_file:
+        decrypted_file.write(decrypted_data)
+
+
 ###--- DRIVER CODE ---###
 if __name__ == "__main__":
     # write_key()
-    encrypt()
+    # encrypt()
+    decrypt()
