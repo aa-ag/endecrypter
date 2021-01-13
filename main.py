@@ -1,10 +1,14 @@
 ###--- IMPORTS ---###
 from cryptography.fernet import Fernet
-import base64
 import config
 
 
+###--- GLOBAL VARIABLES ---###
+key = config.MY_KEY
+fernet = Fernet(key)
+
 ###--- FUNCTIONS ---###
+
 
 def write_key():
     '''
@@ -15,15 +19,24 @@ def write_key():
         kf.write(key)
 
 
+def decrypt(token):
+    '''
+     decrypts string using key
+    '''
+    global key, fernet
+
+    decrypted_message = fernet.decrypt(token)
+
+    print(decrypted_message.decode())
+
+
 def encrypt():
     '''
      Encrypts message using Fernet class
     '''
-    # generate key
-    key = Fernet.generate_key()
-
-    # initialize Fernet class
-    fernet = Fernet(key)
+    # import/generate key
+    # key = Fernet.generate_key()
+    global key, fernet
 
     # convert message to bytes by encoding it
     message = "Hello, World!".encode()
@@ -32,14 +45,10 @@ def encrypt():
     token = fernet.encrypt(message)
 
     print(token)
-
-
-def decrypt():
-    pass
+    decrypt(token)
 
 
 ###--- DRIVER CODE ---###
 if __name__ == "__main__":
     # write_key()
     encrypt()
-    # pass
