@@ -38,14 +38,13 @@ def encrypt():
     # key = Fernet.generate_key()
     global key, fernet
 
-    # convert message to bytes by encoding it
-    message = "Hello, World!".encode()
+    # opens file, reads data inside, encrypts data and writes new, encrypted data
+    with open('lorem.txt', 'rb') as unencrypted_file:
+        file_data = unencrypted_file.read()
+        encrypted_data = fernet.encrypt(file_data)
 
-    # encrypt message
-    token = fernet.encrypt(message)
-
-    print(token)
-    decrypt(token)
+    with open('encrypted_lorem.txt', 'wb') as encrypted_file:
+        encrypted_file.write(encrypted_data)
 
 
 ###--- DRIVER CODE ---###
