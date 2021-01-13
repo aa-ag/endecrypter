@@ -1,11 +1,18 @@
+###--- IMPORTS ---###
 from cryptography.fernet import Fernet
 import config
 
-key = Fernet.generate_key()
 
-f = Fernet(key)
+###--- FUNCTIONS ---###
 
-token = f.encrypt(config.MY_KEY.encode('utf-8'))
-print(token.decode())
+def encrypt():
+    pass
 
-print(f.decrypt(token).decode())
+
+def decrypt():
+    pass
+
+
+###--- DRIVER CODE ---###
+if __name__ == "__main__":
+    pass
