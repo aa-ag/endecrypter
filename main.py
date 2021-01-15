@@ -63,10 +63,13 @@ def encrypt_image():
         image = fin.read()
         fin.close()
 
+        # Return a new array of bytes
         image = bytearray(image)
 
         for index, value in enumerate(image):
             image[index] = value ^ key
+            # The ^ operator yields the bitwise XOR (exclusive OR) of its arguments,
+            # which must be integers.
 
         fin = open(path_to_image, 'wb')
 
@@ -78,9 +81,38 @@ def encrypt_image():
         print("Error: ", Exception.__name__)
 
 
+def decrypt_image():
+    try:
+        path_to_image = '/Users/aaronaguerrevere/Documents/portfolio/endecrypter/thisisfine.jpeg'
+        key = 15
+
+        fin = open(path_to_image, 'rb')
+
+        image = fin.read()
+        fin.close()
+
+        # Return a new array of bytes
+        image = bytearray(image)
+
+        for index, value in enumerate(image):
+            image[index] = value ^ key
+            # The ^ operator yields the bitwise XOR (exclusive OR) of its arguments,
+            # which must be integers.
+
+        fin = open(path_to_image, 'wb')
+
+        fin.write(image)
+        fin.close()
+        print("Image decrypted.")
+
+    except Exception:
+        print("Error: ", Exception.__name__)
+
+
 ###--- DRIVER CODE ---###
 if __name__ == "__main__":
     # write_key()
     # encrypt()
     # decrypt()
-    encrypt_image()
+    # encrypt_image()
+    decrypt_image()
