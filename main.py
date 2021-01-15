@@ -1,10 +1,10 @@
 ###--- IMPORTS ---###
 from cryptography.fernet import Fernet
-import config
+import settings
 
 
 ###--- GLOBAL VARIABLES ---###
-key = config.MY_KEY
+key = settings.MY_KEY
 fernet = Fernet(key)
 
 ###--- FUNCTIONS ---###
@@ -53,8 +53,34 @@ def decrypt():
         decrypted_file.write(decrypted_data)
 
 
+def encrypt_image():
+    try:
+        path_to_image = '/Users/aaronaguerrevere/Documents/portfolio/endecrypter/thisisfine.jpeg'
+        key = 15
+
+        fin = open(path_to_image, 'rb')
+
+        image = fin.read()
+        fin.close()
+
+        image = bytearray(image)
+
+        for index, value in enumerate(image):
+            image[index] = value ^ key
+
+        fin = open(path_to_image, 'wb')
+
+        fin.write(image)
+        fin.close()
+        print("Image encrypted.")
+
+    except Exception:
+        print("Error: ", Exception.__name__)
+
+
 ###--- DRIVER CODE ---###
 if __name__ == "__main__":
     # write_key()
     # encrypt()
-    decrypt()
+    # decrypt()
+    encrypt_image()
