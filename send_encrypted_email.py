@@ -1,5 +1,6 @@
 ###--- IMPORTS ---###
 import smtplib  # https://docs.python.org/3/library/smtplib.html
+import ssl
 import settings
 
 ###--- FUNCTIONS ---###
@@ -23,7 +24,8 @@ def send_encrypted_email():
     encrypt_message_body = input("\nEnter the message to encrypt:\n>>")
 
     for i in range(len(encrypt_message_body)):
-        message_body = message_body + chr(ord(encrypt_message_body[i]))
+        message_body = "Subject: Hi there\n" + \
+            message_body + chr(ord(encrypt_message_body[i]))
 
     # send encrypted message in an email
     session.sendmail(f"{settings.sending_from}",
