@@ -115,4 +115,4 @@ if __name__ == "__main__":
     # encrypt()
     # decrypt()
     # encrypt_image()
-    decrypt_image()
+    # decrypt_image()
