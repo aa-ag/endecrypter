@@ -28,7 +28,7 @@ def send_encrypted_email():
 
     filename = 'thisisfine.jpeg'
 
-    path = '/Users/aaronaguerrevere/Documents/portfolio/endecrypter/thisisfine.jpeg'
+    path = 'thisisfine.jpeg'  # relative path
 
     ctype, encoding = mimetypes.guess_type(path)
     if ctype is None or encoding is not None:
