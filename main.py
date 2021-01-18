@@ -114,5 +114,5 @@ if __name__ == "__main__":
     # write_key()
     # encrypt()
     # decrypt()
-    # encrypt_image()
+    encrypt_image()
     # decrypt_image()
