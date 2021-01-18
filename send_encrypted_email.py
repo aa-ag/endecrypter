@@ -26,6 +26,20 @@ def send_encrypted_email():
     </p>
     """, subtype='html')
 
+    filename = 'thisisfine.jpeg'
+
+    path = '/Users/aaronaguerrevere/Documents/portfolio/endecrypter/thisisfine.jpeg'
+
+    ctype, encoding = mimetypes.guess_type(path)
+    if ctype is None or encoding is not None:
+        ctype = 'application/octet-stream'
+
+    maintype, subtype = ctype.split('/', 1)
+
+    with open(path, 'rb') as fp:
+        msg.add_attachment(fp.read(), maintype=maintype, subtype=subtype,
+                           filename=filename)
+
     context = ssl.create_default_context()
 
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
