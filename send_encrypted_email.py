@@ -31,6 +31,7 @@ def send_encrypted_email():
     path = 'thisisfine.jpeg'  # relative path
 
     ctype, encoding = mimetypes.guess_type(path)
+
     if ctype is None or encoding is not None:
         ctype = 'application/octet-stream'
 
@@ -48,6 +49,7 @@ def send_encrypted_email():
         smtp.ehlo()
         smtp.login(settings.sending_from, settings.hahaha)
         smtp.send_message(msg)
+        smtp.quit()
 
 
 ###--- DRIVER CODE ---###
