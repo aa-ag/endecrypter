@@ -11,7 +11,21 @@ from email.message import EmailMessage
 
 def send_encrypted_email():
 
-    # Create a SSLContext object with default settings.
+    msg = EmailMessage()
+
+    msg['Subject'] = "This is an email..."
+    msg['From'] = settings.sending_from
+    msg['To'] = settings.to
+
+    msg.set_content('Hello World')
+
+    msg.add_alternative("""
+    <p>
+        <h1>This is an email?</h1>
+        Hello <strong>World</strong>!
+    </p>
+    """, subtype='html')
+
     context = ssl.create_default_context()
 
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
@@ -19,7 +33,7 @@ def send_encrypted_email():
         smtp.starttls(context=context)
         smtp.ehlo()
         smtp.login(settings.sending_from, settings.hahaha)
-        smtp.sendmail(settings.sending_from, settings.to, 'Hello World')
+        smtp.send_message(msg)
 
 
 ###--- DRIVER CODE ---###
