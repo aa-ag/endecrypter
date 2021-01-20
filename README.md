@@ -1,6 +1,6 @@
 # En/Decrypting
 
-Quick en/decrypting Python script.
+Quick en/decrypting Python script: `main.py`.
 
 # To run
 
